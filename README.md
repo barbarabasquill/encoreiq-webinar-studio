@@ -35,3 +35,21 @@ Recognized Salesforce header alternatives include `Email`, `Status`, `Company`, 
 
 ## Honest scope and safety
 The application does **not** automatically read webinar URLs, scrape websites, connect to Firecrawl or Clay, use a generative AI API, write Salesforce records, or send messages. It creates **rules-based, editable draft recommendations** based on provided webinar notes and audience statuses. The generated Claude research prompt is optional and is not sent anywhere by EncoreIQ. Check permissions, privacy and costs separately before using external services. Never upload real CRM contacts to the public GitHub repository; load authorized CSV data through the live browser app only. Audience contacts stay in the current browser session. General campaign settings can be stored in browser local storage. Follow organization consent/suppression rules before using exports for outreach. Imported records may have pending or inconsistent statuses; the dashboard identifies uncertainty rather than implying unverified rates are benchmarks.
+
+
+## V3 changes
+- Dedicated Webinar performance navigation item, with existing manual/CSV analysis.
+- Campaign-member denominator clearly labeled as a proxy for registrations; separates replay and partial viewers, while flagging unknown statuses.
+- Email Studio has a three-touch selector. Generate, edit, and save each touch separately. Export selected three-touch sequence and a full campaign plan including touch numbers.
+- No automatic outreach or CRM writes. Claimed webinar details come only from marketer-supplied notes; webinar URLs are not scraped.
+
+
+## V3 Enhanced update
+- Branding: “Created by Barbara Basquill” near the logo and a © 2026 Barbara Basquill footer. The SAMPLE WORKSPACE badge was removed entirely.
+- Follow-up Studio: three subject line alternatives; improved, editable, persona-aware emails based only on the webinar text entered; matched CTAs from user-verified resource links; recipient preview and copy/export with actual CTA text. No automatic website research.
+- Review & Export: View each of the three CSV outputs before downloading (first 30 rows shown; export includes all rows). Audience preview may contain personally identifiable information; use authorized exports only and shared devices cautiously.
+- Local-only: Salesforce contacts are not sent to any server. Saved settings are in localStorage; imported records and drafts are in this browser session.
+- Safety: Missing CTA URLs are highlighted; a URL alone does not provide webinar content; pasted notes still require human fact-checking.
+
+### GitHub upload
+Replace the five items at the repository root: index.html, css/styles.css, js/app.js, README.md, salesforce-webinar-sample.csv. Commit directly to main and refresh the published site (Cmd+Shift+R on Mac).
