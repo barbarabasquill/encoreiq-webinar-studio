@@ -1,36 +1,37 @@
-# EncoreIQ — Webinar-to-Pipeline Studio
+# EncoreIQ — Webinar-to-Pipeline Studio (Update 2)
 
-A standalone, browser-first webinar follow-up planner for Marketing and Sales. No terminal, build pipeline, paid API, CRM write, or outbound email connection is needed.
+An independent, browser-based workspace for B2B Marketing and Sales. No installation, terminal, paid API, automatic email sending, or Salesforce connection required.
 
-## What it does
-- Enter webinar and company website URLs and paste a webinar description or transcript.
-- Copy a research prompt for Claude to use with optional, separately configured Firecrawl; paste the findings back.
-- Import Salesforce/webinar CSVs with basic validation, status normalization and duplicate detection.
-- Review/edit segment-specific follow-up email drafts and two CTA recommendations.
-- Plan additional webinar topics, content gaps, next actions, and illustrative pipeline.
-- Export campaign plan, audience assignments and content roadmap as CSV files.
+## What's new in this update
+- Choose **multiple target buyer personas** in Campaign Setup. Create and save different email drafts for each segment and persona.
+- Upload one small Salesforce Campaign Member CSV, with six recommended columns: **First Name, Email Address, Company Name, Job Title, Campaign Member Status, Engagement Action**. Optional: **Lead Status, Industry**.
+- Engagement Action (e.g. Requested Demo) is separate from attendance status so those contacts aren't counted twice.
+- Audience & Segments includes registration, attendance, no-show, demo-interest rates; webinar-type-aware **Repeat / Improve / Stop or Reconsider / Try Next** guidance; optional campaign attendance goal; manual-results mode; and downloadable performance report.
+- Download audience assignments, segment/persona email drafts, and webinar-content roadmap.
+- Edit webinar descriptions, URLs, CTA links, and copy. Copy a Claude prompt for optional Firecrawl-assisted research outside the app.
 
-## Deploy on GitHub Pages
-Upload `index.html`, the `css` folder and the `js` folder to the **root** of this repository. In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, **main**, **/(root)**, and Save. The site will be available at `https://YOUR-USERNAME.github.io/encoreiq-webinar-studio/` after publishing.
+## Upload to your existing GitHub repo
+1. Open your existing EncoreIQ repository on GitHub.
+2. Replace the **root `index.html`** file, **`css/styles.css`**, **`js/app.js`**, and **root `README.md`** with these updated versions. (Do not upload the ZIP file as a website file.)
+3. Easiest approach: GitHub **Add file → Upload files** and drag the *contents* of this extracted package, retaining folder paths. Confirm GitHub detects replacements, then **Commit changes**.
+4. Keep GitHub Pages at Settings → Pages → Deploy from a branch → main → /(root). Refresh your live site after the deployment completes.
 
-## Privacy and limitations
-All demo contacts are fictional. Imported audience data remains in the current browser session, not on a server. Non-contact campaign settings may be stored in browser localStorage. Avoid shared devices for real data. CSV exports download to your computer and must be handled in accordance with your organization's privacy policies.
+## Example Salesforce CSV
+A downloadable **`salesforce-webinar-sample.csv`** with entirely fictional contacts is included. You can also click **Download sample CSV** in the app.
 
-**This version does not fetch or read URLs.** Firecrawl, Claude and Clay are **not integrated**. The optional Claude prompt is copied to your clipboard and can be used in a separately configured Claude environment; any external service's fees, permissions, and data policies are its own. Content and email recommendations are local, editable rules-based starting points, not verified research or AI-generated messages. CTA URLs must be verified by the marketer. No emails are sent, and no Salesforce data is changed.
+Recognized Salesforce header alternatives include `Email`, `Status`, `Company`, and `Title`. CSV is processed locally in the browser, not on a server. Email is required to identify duplicate rows. If the same email appears in multiple campaign rows, we keep a single record and prefer a recognized attendance status, but manually review any conflicts.
 
-## Quick test cases
-1. **Blank pipeline rate:** clear Qualified Lead Rate and click Calculate → a readable error appears.
-2. **Invalid rate:** enter 120 for Meeting Rate → an error says rates must be 0–100%.
-3. **Invalid CSV:** import CSV without Email or Status columns → error identifies missing columns.
-4. **Invalid CTA:** enter `not-a-url` for CTA 1 and Save → validation error appears.
-5. **Successful example:** click Load fictional sample records, Generate draft, add a valid `https://example.com/...` URL for each selected CTA, Save draft, and Export campaign plan → a CSV downloads.
-6. **Duplicate record:** upload CSV with repeated email rows → only first is retained and duplicates are counted.
-7. **Webinar research:** supply text in webinar notes and click Analyze → a source-limited topic summary appears; no remote fetch occurs.
+## Tests
+1. Select 3 personas in Campaign Setup → all 3 appear beneath the selector; changing the persona in Email Studio changes the recommended draft.
+2. Load fictional samples → performance dashboard displays registrants, live attendees, no-shows and demo requests (one person may both attend and request a demo).
+3. Upload the included Salesforce sample CSV → preview and dashboard populate, and CSV export downloads.
+4. Switch to **Use manually entered totals** and enter 500 registered, 325 attended, 175 no-shows, 48 demo requests → **65.0% attendance** and **9.6% demo request rate**.
+5. Enter an invalid count such as -2 or 1.5 → error explains that counts must be nonnegative whole numbers; attended + no-shows greater than registered also shows an error.
+6. Enter an attendance goal of 70% using the manual example → Improve section flags a shortfall against *your* goal.
+7. Blank required manual fields → readable validation error.
+8. Invalid audience CSV with no Email or Status column → readable validation error.
+9. Fill email CTA with `not-a-url` and click Save → readable URL error.
+10. Download performance CSV and audience assignments; confirm actual calculations and editable recommendations are present.
 
-## Folder layout
-```
-index.html
-css/styles.css
-js/app.js
-README.md
-```
+## Honest scope and safety
+The application does **not** automatically read webinar URLs, scrape websites, connect to Firecrawl or Clay, use a generative AI API, write Salesforce records, or send messages. It creates **rules-based, editable draft recommendations** based on provided webinar notes and audience statuses. The generated Claude research prompt is optional and is not sent anywhere by EncoreIQ. Check permissions, privacy and costs separately before using external services. Never upload real CRM contacts to the public GitHub repository; load authorized CSV data through the live browser app only. Audience contacts stay in the current browser session. General campaign settings can be stored in browser local storage. Follow organization consent/suppression rules before using exports for outreach. Imported records may have pending or inconsistent statuses; the dashboard identifies uncertainty rather than implying unverified rates are benchmarks.
